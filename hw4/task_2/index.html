@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hw4_task-2</title>
+</head>
+<body>
+    <span id="text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing</span>
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing</span>
+    </span>
+
+    <script>
+        (function () {
+            let elem = document.getElementById('text');
+
+            deleteTextNodes(elem);
+
+            function deleteTextNodes(elem) {
+                elem.textContent = '';
+            }
+        })();
+    </script>
+</body>
+</html>

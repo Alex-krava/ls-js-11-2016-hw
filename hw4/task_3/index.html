@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hw4_task-3</title>
+</head>
+<body>
+    <span id="text">
+        <span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing</span>
+        </span>
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing</span>
+        <span>Lorem ipsum dolor sit amet, consectetur adipisicing</span>
+        Lorem ipsum dolor sit amet, consectetur adipisicing
+    </span>
+
+    <script>
+        (function () {
+            let elem = document.getElementById('text');
+            deleteTextNodes(elem);
+
+            function deleteTextNodes(elem) {
+                for (let i of elem.childNodes) {
+                    if(i.nodeType === 3){
+                        i.textContent = '';
+                    }
+                    else{
+                        deleteTextNodes(i);
+                    }
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
