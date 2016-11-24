@@ -4,7 +4,6 @@
     elem.addEventListener('click', init);
 
     function init() {
-        elem.style.display = 'none';
         addElement();
     }
 
@@ -40,7 +39,7 @@
         addElem.style.left = leftPosition + 'px';
 
         body.appendChild(addElem);
-        dragAndDrop();
+        document.getElementsByClassName('drag-elem')[0];
     }
 
     function colorSizeElement(maxWidth, maxHeight) {
@@ -68,10 +67,16 @@
         return size;
     }
 
-    function dragAndDrop() {
-        let dragElem = document.getElementsByClassName('drag-elem')[0];
 
-        dragElem.addEventListener('mousedown', function (e) {
+    document.addEventListener('mousedown', function (e) {
+        if (e.target.className === 'drag-elem') {
+            let elems = document.getElementsByClassName('drag-elem');
+            for (let elem of elems) {
+                elem.style.zIndex = '1';
+            }
+            let dragElem;
+            dragElem = e.target;
+            dragElem.style.zIndex = '1000';
             let container = dragElem.getBoundingClientRect();
 
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
@@ -81,7 +86,7 @@
             let clientLeft = document.documentElement.clientLeft || document.body.clientLeft || 0;
 
             let top = container.top + scrollTop - clientTop;
-            let left = container.left + scrollLeft - clientLeft;;
+            let left = container.left + scrollLeft - clientLeft;
 
             let coords = {
                 'top': Math.round(top),
@@ -96,11 +101,11 @@
             document.addEventListener('mousemove', events);
             dragElem.addEventListener('mouseup', events);
 
-            function events(e){
-                if(e.type === 'mousemove'){
+            function events(e) {
+                if (e.type === 'mousemove') {
                     positionElem(e);
                 }
-                if(e.type === 'mouseup'){
+                if (e.type === 'mouseup') {
                     document.removeEventListener('mousemove', events);
                     dragElem.removeEventListener('mouseup', events);
                 }
@@ -110,6 +115,6 @@
                 dragElem.style.left = e.pageX - shiftX + 'px';
                 dragElem.style.top = e.pageY - shiftY + 'px';
             }
-        });
-    }
+        }
+    });
 })();
