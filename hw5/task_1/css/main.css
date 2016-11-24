@@ -1,0 +1,109 @@
+.accordeon {
+    width: 460px;
+    margin: 125px auto 0;
+}
+
+.accordeon_logo {
+    text-align: center;
+}
+
+.accordeon_items {
+    list-style: none;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.accordeon_title {
+    display: block;
+}
+
+.accordeon_item {
+    display: block;
+    background-color: #e7e7e7;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    position: relative;
+    max-height: 42px;
+}
+
+.accordeon_item--active {
+    max-height: 4000px;
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    transition: max-height 1s;
+}
+
+.accordeon_item::before {
+    content: "";
+    display: block;
+    position: absolute;
+}
+
+.accordeon_link {
+    display: block;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: 'Fira Sans', sans-serif;
+    color: rgb(255, 255, 255);
+    line-height: 1.2;
+    padding: 14px 0;
+    height: 42px;
+    border-radius: 20px;
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative
+}
+
+.accordeon_link:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border: 7px solid transparent;
+    border-bottom: 12px solid #ff8663;
+    transform: rotate(180deg);
+    right: 20px;
+}
+
+.accordeon_item:nth-child(2n) .accordeon_link {
+    background-color: #e7e7e7;
+    color: #4f4f4f;
+}
+
+.accordeon_item:nth-child(2n+1) .accordeon_link {
+    background-color: #696666;
+    color: rgb(255, 255, 255);
+}
+
+.accordeon_item--active .accordeon_link {
+    background-color: #ff8663 !important;
+    color: #fff !important;
+}
+
+.accordeon_item--active .accordeon_link:before {
+    top: 7px;
+    border-bottom: 12px solid #fff;
+    transform: rotate(0);
+}
+
+.content_items {
+    list-style: none;
+    padding: 0 20px;
+}
+
+.content_item {
+    padding-top: 15px;
+    font-size: 15px;
+    font-family: "Fira Sans";
+    color: rgb(79, 79, 79);
+    line-height: 1;
+}
+
+.content_item:last-child {
+    margin-bottom: 15px;
+}
+
+.accordeon_link {
+    text-decoration: none;
+}
