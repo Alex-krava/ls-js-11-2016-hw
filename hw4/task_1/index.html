@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hw4_task-1</title>
+</head>
+<body>
+<div id="container">
+    <div>Other text</div>
+</div>
+
+<script>
+    (function () {
+        let container = document.getElementById('container');
+
+        let div = document.createElement('div');
+        div.textContent = 'New Element';
+
+        prepend(container, div);
+
+        function prepend(container, newElement) {
+            let firstElem = container.firstChild;
+            if (!newElement) {
+                throw new Error('newElement empty');
+            }
+            if (firstElem) {
+                container.insertBefore(newElement, firstElem);
+            }
+            else {
+                container.appendChild = newElement;
+            }
+        }
+    })();
+</script>
+</body>
+</html>
