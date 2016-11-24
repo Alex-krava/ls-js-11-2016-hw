@@ -5,30 +5,32 @@
     <title>hw4_task-1</title>
 </head>
 <body>
-    <div id="container">
-        <div>Other text</div>
-    </div>
+<div id="container">
+    <div>Other text</div>
+</div>
 
-    <script>
-        (function () {
-            let container = document.getElementById('container');
-            let newElement = '<div>New Element</div>';
+<script>
+    (function () {
+        let container = document.getElementById('container');
 
-            prepend(container, newElement);
+        let div = document.createElement('div');
+        div.textContent = 'New Element';
 
-            function prepend(container, newElement) {
-                let firstElem = container.firstElementChild;
-                if(!newElement){
-                    throw new Error('newElement empty');
-                }
-                if(firstElem){
-                    firstElem.insertAdjacentHTML("beforeBegin", newElement);
-                }
-                else{
-                    container.innerHTML = newElement;
-                }
+        prepend(container, div);
+
+        function prepend(container, newElement) {
+            let firstElem = container.firstChild;
+            if (!newElement) {
+                throw new Error('newElement empty');
             }
-        })();
-    </script>
+            if (firstElem) {
+                container.insertBefore(newElement, firstElem);
+            }
+            else {
+                container.appendChild = newElement;
+            }
+        }
+    })();
+</script>
 </body>
 </html>
