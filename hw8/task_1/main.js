@@ -17,31 +17,33 @@
         })
             .then(function (data) {
                 let dataArray = JSON.parse(data);
-                filterCity(dataArray, filterVal);
+
+                let citesArray = dataArray.reduce(function (values, item) {
+                    values.push(item.name);
+                    return values;
+                }, []);
+
+                filterCity(citesArray, filterVal);
             });
     }
 
     function filterCity(data, filterVal) {
-        let dataArray = [];
-        let searchBool = false;
+        let filterArray = [];
 
         if (filterVal !== undefined) {
-            searchBool = true;
+            filterArray = data.filter(function (item) {
+                return item.toLowerCase().indexOf(filterVal.toLowerCase()) + 1;
+            });
+            filterArray = filterArray.sort();
+        }
+        else {
+            filterArray = data.sort();
         }
 
-        for (let item of data) {
-            if (searchBool) {
-                if (item.name.indexOf(filterVal) + 1) {
-                    dataArray.push(item.name);
-                }
-            }
-            else {
-                dataArray.push(item.name);
-            }
-        }
+        renderHTML(filterArray)
+    }
 
-        dataArray = dataArray.sort();
-
+    function renderHTML(data) {
         let template = `
             <ul>
                 {{#each cities}}
@@ -50,7 +52,7 @@
             </ul>`;
 
         let templateCompile = Handlebars.compile(template);
-        template = templateCompile({cities: dataArray});
+        template = templateCompile({cities: data});
 
         wrapper.innerHTML = template;
     }
