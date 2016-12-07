@@ -32,8 +32,7 @@
             .then(function () {
                 VK.api('friends.get', {'fields': 'photo_100', 'order': 'name'}, function (response) {
 
-                    //localStorage
-                    if(JSON.parse(localStorage.getItem('dataVkRight')).length){
+                    if(localStorage.getItem('dataVkRight')){
                         dataVkLeft = JSON.parse(localStorage.getItem('dataVkLeft'));
                         dataVkRight = JSON.parse(localStorage.getItem('dataVkRight'));
                     }
