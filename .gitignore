@@ -46,3 +46,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+hw12/node_modules
+
+/hw12/build.js
+/hw12/foundation.js
