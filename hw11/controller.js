@@ -22,6 +22,7 @@ var Controller = {
     },
     photosRoute: function() {
         return Model.getPhotos().then(function(photos) {
+            photos.splice(0, 1);
             results.innerHTML = View.render('photos', {list: photos});
         });
     }
