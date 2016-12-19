@@ -1,14 +1,5 @@
 (function () {
     'use strict'
-
-    var myCalculator = new SqrCalc(100);
-
-    console.log(myCalculator.sum(1, 2, 3)); //вернет 11236 (100 + 1 + 2 + 3 = 106 * 106)
-    console.log(myCalculator.dif(10, 20)); //вернет 4900
-    console.log(myCalculator.div(2, 2)); //вернет 625
-    console.log(myCalculator.mul(2, 2)); //вернет 160000
-
-
     function Calculator(firstNumber) {
         this.firstNumber = firstNumber;
     }
@@ -52,7 +43,7 @@
         this.firstNumber = firstNumber;
     }
 
-    inherit(SqrCalc, Calculator);
+    SqrCalc.prototype = Object.create(Calculator.prototype);
 
     SqrCalc.prototype.sum = function () {
         var result = Calculator.prototype.sum.apply(this, arguments);
@@ -75,10 +66,9 @@
         return result;
     }
 
-    function inherit(child, parent) {
-        var Temp = function () {
-        };
-        Temp.prototype = parent.prototype;
-        child.prototype = new Temp();
-    }
+    var myCalculator = new SqrCalc(100);
+    console.log(myCalculator.sum(1, 2, 3)); //вернет 11236 (100 + 1 + 2 + 3 = 106 * 106)
+    console.log(myCalculator.dif(10, 20)); //вернет 4900
+    console.log(myCalculator.div(2, 2)); //вернет 625
+    console.log(myCalculator.mul(2, 2)); //вернет 160000
 })();

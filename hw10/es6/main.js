@@ -27,7 +27,7 @@
                     result = result / arguments[i];
                 }
                 else {
-                    return "Не хорошо делить на ноль"
+                    throw new Error("Не хорошо делить на ноль");
                 }
             }
             return result;
@@ -50,25 +50,25 @@
 
         sum() {
 
-            var result = super.sum.apply(this, arguments);
+            var result = super.sum(...arguments);
             result = result * result;
             return result;
         }
 
         dif() {
-            var result = super.dif.apply(this, arguments);
+            var result = super.dif(...arguments);
             result = result * result;
             return result;
         }
 
         div() {
-            var result = super.div.apply(this, arguments);
+            var result = super.div(...arguments);
             result = result * result;
             return result;
         }
 
         mul() {
-            var result = super.mul.apply(this, arguments);
+            var result = super.mul(...arguments);
             result = result * result;
             return result;
         }
