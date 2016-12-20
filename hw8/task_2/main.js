@@ -66,14 +66,22 @@
         }
 
         function sortData(data) {
-            let withoutYear = [];
             let withoutDate = [];
             let usersData = [];
 
             for (let user of data) {
                 if (user.age === -1) {
+                    let bDate = user.bdate.split('.');
+
+                    if(Math.round(new Date(2000, new Date().getMonth(), new Date().getDate()).getTime() / 1000) < Math.round(new Date(2000, bDate[1] - 1, bDate[0]).getTime() / 1000)){
+                        user.unix = Math.round(new Date(2000, bDate[1] - 1, bDate[0]).getTime() / 1000) - Math.round(new Date(2000, new Date().getMonth(), new Date().getDate()).getTime() / 1000);
+                    }
+                    else {
+                        user.unix = Math.round(new Date(2001, bDate[1] - 1, bDate[0]).getTime() / 1000) - Math.round(new Date(2000, new Date().getMonth(), new Date().getDate()).getTime() / 1000);
+                    }
+
                     user.age = 'Не указал год рождения';
-                    withoutYear.push(user);
+                    usersData.push(user);
                 }
                 else if (user.age === -2) {
                     user.age = 'Возраст неизвестен';
@@ -81,7 +89,14 @@
                 }
                 else {
                     let bDate = user.bdate.split('.');
-                    user.unix = Math.round((Math.round(new Date().getTime() / 1000)) - (new Date(bDate[2], bDate[1] - 1, bDate[0]).getTime() / 1000));
+
+                    if(Math.round(new Date(2000, new Date().getMonth(), new Date().getDate()).getTime() / 1000) < Math.round(new Date(2000, bDate[1] - 1, bDate[0]).getTime() / 1000)){
+                        user.unix = Math.round(new Date(2000, bDate[1] - 1, bDate[0]).getTime() / 1000) - Math.round(new Date(2000, new Date().getMonth(), new Date().getDate()).getTime() / 1000);
+                    }
+                    else {
+                        user.unix = Math.round(new Date(2001, bDate[1] - 1, bDate[0]).getTime() / 1000) - Math.round(new Date(2000, new Date().getMonth(), new Date().getDate()).getTime() / 1000);
+                    }
+
                     usersData.push(user);
                 }
             }
@@ -96,20 +111,8 @@
                 return 0;
             });
 
-            withoutYear.sort(function (a, b) {
-                let bDateA = a.bdate.split('.');
-                let bDateB = b.bdate.split('.');
-
-                return bDateB[1] - bDateA[1];
-            });
-
             if (usersData.length) {
                 for (let user of usersData) {
-                    dataVk.push(user);
-                }
-            }
-            if (withoutYear.length) {
-                for (let user of withoutYear) {
                     dataVk.push(user);
                 }
             }
@@ -134,7 +137,7 @@
                     </thead>
                     <tbody>
                     {{#each users}}
-                        <tr>
+                        <tr style="text-align: center">
                             <td><img src="{{this.photo_100}}" alt="photo"></td>
                             <td>{{this.first_name}} {{this.last_name}}</td>
                             <td>{{this.age}}</td>
