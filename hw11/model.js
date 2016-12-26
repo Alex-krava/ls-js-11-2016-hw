@@ -41,6 +41,6 @@ var Model = {
         return this.callApi('groups.get', { extended: 1, count: 20 });
     },
     getPhotos: function() {
-        return this.callApi('photos.getAll', { extended: 1 });
+        return this.callApi('photos.getAll', { extended: 1, count: 200 });
     }
 };
