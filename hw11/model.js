@@ -40,7 +40,7 @@ var Model = {
     getGroups: function() {
         return this.callApi('groups.get', { extended: 1, count: 20 });
     },
-    getPhotos: function() {
-        return this.callApi('photos.getAll', { extended: 1, count: 200 });
+    getPhotos: function(offsetVal) {
+        return this.callApi('photos.getAll', { extended: 1, count: 200, offset: offsetVal});
     }
 };
