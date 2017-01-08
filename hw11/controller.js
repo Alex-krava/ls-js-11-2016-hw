@@ -47,8 +47,11 @@ var Controller = {
                     })
                         .then(function (photosArray) {
                             if(count){
-                                getPhoto((countPhoto + offset), --count);
-                                return;
+                                let timeoutTime = (count + 1) * 200;
+                                setTimeout(function () {
+                                    getPhoto((countPhoto + offset), --count);
+                                    return;
+                                }, timeoutTime);
                             }
 
                             return new Promise(function (resolve) {
